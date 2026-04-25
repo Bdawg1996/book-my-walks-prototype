@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Johnson | Book My Walks</title>
+    <meta name="theme-color" content="#1B4332">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #FDFAF5; color: #1A1A1A; line-height: 1.6; }
+        .container { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 28px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.1rem; font-weight: 800; color: #1B4332; text-decoration: none; }
+        .logo span { margin-right: 6px; }
+        .walker-badge { font-size: 0.8rem; color: #888; }
+        .walker-card { background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 24px rgba(27,67,50,0.08); margin-bottom: 20px; }
+        .cover { height: 140px; background: linear-gradient(135deg, #1B4332 0%, #52B788 100%); position: relative; }
+        .avatar-wrap { position: absolute; bottom: -50px; left: 28px; }
+        .avatar { width: 100px; height: 100px; border-radius: 50%; border: 4px solid #fff; background: #D8F3DC; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; overflow: hidden; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .walker-info { padding: 60px 28px 28px; }
+        .walker-name { font-size: 1.6rem; font-weight: 800; color: #1A1A1A; margin-bottom: 4px; }
+        .walker-area { color: #888; font-size: 0.9rem; margin-bottom: 16px; }
+        .walker-bio { color: #444; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+        .payment-section { padding: 20px 28px; border-top: 1px solid #F0F0F0; }
+        .pay-label { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; font-weight: 600; }
+        .pay-methods { display: flex; gap: 10px; flex-wrap: wrap; }
+        .pay-tag { background: #F0F9F2; color: #1B4332; padding: 6px 14px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+        .pay-tag.cash { background: #FEF3C7; color: #92400E; }
+        .services-section { padding: 24px 28px; }
+        .services-label { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; font-weight: 600; }
+        .service-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #F0F0F0; }
+        .service-row:last-child { border-bottom: none; }
+        .service-name { font-weight: 600; font-size: 1rem; }
+        .service-desc { color: #888; font-size: 0.85rem; margin-top: 2px; }
+        .service-price { font-size: 1.3rem; font-weight: 700; color: #1B4332; }
+        .book-section { padding: 0 28px 28px; }
+        .book-btn { width: 100%; padding: 16px; background: #1B4332; color: #fff; border: none; border-radius: 14px; font-size: 1.05rem; font-weight: 700; cursor: pointer; font-family: 'Outfit', sans-serif; }
+        .book-btn:hover { opacity: 0.85; }
+        .booking-form { padding: 24px 28px; background: #F9FAFB; border-top: 1px solid #E5E5E5; display: none; }
+        .booking-form.active { display: block; }
+        .bf-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 18px; color: #1B4332; }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.85rem; font-weight: 600; color: #444; }
+        .form-group input, .form-group textarea { width: 100%; padding: 11px 14px; border: 2px solid #D8F3DC; border-radius: 8px; background: #fff; font-size: 0.95rem; font-family: 'Outfit', sans-serif; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #1B4332; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .form-btns { display: flex; gap: 10px; margin-top: 16px; }
+        .btn-cancel { flex: 1; padding: 13px; background: #fff; color: #666; border: 2px solid #E5E5E5; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif; }
+        .btn-send { flex: 2; padding: 13px; background: #1B4332; color: #fff; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif; }
+        .booking-success { text-align: center; padding: 32px 28px; display: none; }
+        .booking-success.active { display: block; }
+        .booking-success h3 { color: #1B4332; font-size: 1.3rem; margin-bottom: 10px; }
+        .booking-success p { color: #666; font-size: 0.95rem; }
+        footer { text-align: center; padding: 32px 0; color: #888; font-size: 0.8rem; }
+        footer a { color: #1B4332; text-decoration: none; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: #888; text-decoration: none; font-size: 0.875rem; padding: 28px 0 0; }
+        .back-link:hover { color: #1B4332; }
+        @media (max-width: 480px) {
+            .form-row { grid-template-columns: 1fr; }
+            .cover { height: 110px; }
+            .avatar { width: 80px; height: 80px; font-size: 2rem; }
+            .avatar-wrap { bottom: -40px; }
+            .walker-info { padding-top: 50px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Find more walkers</a>
+
+        <div class="walker-card">
+            <div class="cover">
+                <div class="avatar-wrap">
+                    <div class="avatar">🐾</div>
+                </div>
+            </div>
+            <div class="walker-info">
+                <h1 class="walker-name">Sarah Johnson</h1>
+                <div class="walker-area">📍 Mission District, San Francisco</div>
+                <p class="walker-bio">I've been walking dogs for 8 years — I genuinely love every minute of it. I specialize in high-energy dogs who need real exercise, not just a lap around the block. Patient with nervous pups, great with puppies, and I always keep my eyes on the dogs (no phone when I'm with your pet).</p>
+            </div>
+            <div class="payment-section">
+                <div class="pay-label">Payment</div>
+                <div class="pay-methods">
+                    <span class="pay-tag">💵 Cash</span>
+                    <span class="pay-tag">📱 Venmo @SarahJohnson</span>
+                    <span class="pay-tag">🏦 Zelle</span>
+                    <span class="pay-tag cash">🍎 Apple Pay</span>
+                </div>
+            </div>
+            <div class="services-section">
+                <div class="services-label">Services</div>
+                <div class="service-row">
+                    <div>
+                        <div class="service-name">30 Min Walk</div>
+                        <div class="service-desc">Quick walk, perfect for a potty break</div>
+                    </div>
+                    <div class="service-price">$25</div>
+                </div>
+                <div class="service-row">
+                    <div>
+                        <div class="service-name">60 Min Adventure</div>
+                        <div class="service-desc">Full walk with park time and play</div>
+                    </div>
+                    <div class="service-price">$40</div>
+                </div>
+                <div class="service-row">
+                    <div>
+                        <div class="service-name">2 Hour Day Trip</div>
+                        <div class="service-desc">Beach, trail, or long neighborhood explore</div>
+                    </div>
+                    <div class="service-price">$70</div>
+                </div>
+            </div>
+            <div class="book-section">
+                <button class="book-btn" onclick="toggleForm()">Book a Walk →</button>
+            </div>
+            <div class="booking-form" id="bookingForm">
+                <div class="bf-title">Request a booking with Sarah</div>
+                <form onsubmit="submitBooking(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" id="clientName" placeholder="Alex Chen" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="clientEmail" placeholder="alex@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Dog's Name</label>
+                        <input type="text" id="dogName" placeholder="Mocha" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="bookingDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" id="clientPhone" placeholder="(415) 555-0123">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes for Sarah</label>
+                        <textarea id="notes" rows="2" placeholder="Mocha is nervous around large dogs, loves tennis balls..."></textarea>
+                    </div>
+                    <div class="form-btns">
+                        <button type="button" class="btn-cancel" onclick="toggleForm()">Cancel</button>
+                        <button type="submit" class="btn-send">Send Request</button>
+                    </div>
+                </form>
+            </div>
+            <div class="booking-success" id="bookingSuccess">
+                <h3>✅ Request sent!</h3>
+                <p>Sarah will email you within 24 hours to confirm the booking.</p>
+            </div>
+        </div>
+
+        <footer>
+            <a href="/walkers.html">Find more walkers</a> &nbsp;|&nbsp; <a href="/signup.html">For Walkers</a>
+            <br><br>
+            Your dog deserves a consistent walker. 🐾
+        </footer>
+    </div>
+
+    <script>
+        function toggleForm() {
+            const f = document.getElementById('bookingForm');
+            const s = document.getElementById('bookingSuccess');
+            f.classList.toggle('active');
+            if (s.classList.contains('active')) s.classList.remove('active');
+        }
+        function submitBooking(e) {
+            e.preventDefault();
+            document.getElementById('bookingForm').classList.remove('active');
+            document.getElementById('bookingSuccess').classList.add('active');
+        }
+    </script>
+</body>
+</html>
